@@ -1,0 +1,15 @@
+.header {
+	width: 100%;
+	padding: 100px 80px 60px 80px;
+	background-color: #969FAA;
+}
+.header__hat {
+	display: block;
+	color : #fff;
+	margin-bottom: 20px;
+	font-weight: 400;
+	span { 
+		font-weight: 600;
+		font-size: 35px;
+	}
+}

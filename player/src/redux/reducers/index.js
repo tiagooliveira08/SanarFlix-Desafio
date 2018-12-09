@@ -1,5 +1,7 @@
 import moviesReducer from "./moviesReducer";
+import searchReducer from "./searchReducer";
 
 export  {
-	moviesReducer
+	moviesReducer,
+	searchReducer
 }

@@ -1,10 +1,11 @@
 import { createStore, combineReducers } from "redux";
-import { moviesReducer } from "./../reducers";
+import { moviesReducer, searchReducer } from "./../reducers";
 
 const reducersCombined = combineReducers({
-	moviesReducer
+	moviesReducer,
+	searchReducer
 })
 
-const store = createStore(moviesReducer);
-
+const store = createStore(reducersCombined);
+store.subscribe( () => console.log(store.getState()));
 export default store;
