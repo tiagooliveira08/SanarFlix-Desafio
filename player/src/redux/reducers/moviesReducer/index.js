@@ -1,13 +1,16 @@
+import Types from "./../../types";
+
 const initialState = { 
-	movies : []
+	movies : null
 }
 
 const moviesReducer = (state = initialState, action) => { 
 	
 	switch(action.type) {
-		case  "MOVIES" : {
-			console.log("movies");
-			return { ...state }
+		case  Types.GET_MOVIES : {
+			console.log("neter movies")
+			console.log(action.payload.data.videos);
+			return { ...state, movies : action.payload.data.videos }
 		}
 		default : return { ...state }
 	}

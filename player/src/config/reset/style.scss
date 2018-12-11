@@ -1,8 +1,12 @@
 body,html { 
 	font-family: 'Open Sans', sans-serif;
-	box-sizing: border-box;
+	
 }
 *{
 	padding: 0;
 	margin: 0; 
+	box-sizing: border-box;
+}
+.container { 
+	margin : 0 auto;
 }

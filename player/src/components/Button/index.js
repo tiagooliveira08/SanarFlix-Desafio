@@ -2,13 +2,14 @@ import React from "react";
 import propTypes  from "prop-types";
 import "./style.scss";
 
-const Button = ({text, color, backgroundColor}) =>  {
+const Button = ({text, color, backgroundColor, width}) =>  {
 
 const buttonStyle = { 
 	backgroundColor,
-	color
+	color,
+	width
 }
-	return <button class="button" style={buttonStyle}>{text}</button>
+	return <button className="button" style={buttonStyle}>{text}</button>
 }
 
 Button.defaultProps = {
