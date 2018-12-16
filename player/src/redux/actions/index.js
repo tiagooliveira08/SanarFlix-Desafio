@@ -1,5 +1,7 @@
 import getMovies from "./getMovies";
+import filterMovies from "./filterMovies";
 
 export  {
-	getMovies
+	getMovies,
+	filterMovies
 }

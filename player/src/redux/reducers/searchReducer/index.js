@@ -1,5 +1,7 @@
+import Types from "./../../types/";
+
 const initialState = {
-	SearchValue : ""
+	searchValue : "", test: 123
 }
 
 const searchReducer = (state = initialState, action) => { 
@@ -8,6 +10,7 @@ const searchReducer = (state = initialState, action) => {
 		case "TEST" : {
 			console.log("enter test")
 		}
+
 
 		default : return {...state}
 	}

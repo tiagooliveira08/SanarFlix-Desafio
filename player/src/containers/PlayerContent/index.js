@@ -18,8 +18,6 @@ class PlayerContent extends Component {
 	render() {
 		const { movies } = this.props.moviesReducer;
 
-		console.log(movies);
-
 		return (
 			<div className="player-content">
 				<div className="container">
@@ -29,7 +27,7 @@ class PlayerContent extends Component {
 					</div>
 					<div className="player-content__content">
 						{movies && movies.map((item, index) => { 
-							return <PlayerBox {...item} />
+							return <PlayerBox {...item} key={index} />
 						})}
 					</div>
 				</div>
