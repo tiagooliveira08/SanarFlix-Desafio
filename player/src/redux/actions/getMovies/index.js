@@ -1,41 +1,48 @@
 import axios from "axios";
 import Types from "./../../types";
 
-const getMovies = () =>  {
-	return (dispatch, getState) => { 
-		const getMoviesValue = () => axios.get("http://demo6669321.mockable.io/videos").then(resp => { 
-			return {
-				type : Types.GET_MOVIES,
-				payload : { 
-					data : resp.data
-				}
-			}
-		})
 
-	dispatch(getMoviesValue());
-	} 
-	
+const getMovies = () => dispatch => {
+
+	dispatch(getMoviesStarted());
+
+	setTimeout(axios.get("http://demo6669321.mockable.io/videos").then(data => {
+		dispatch(getMoviesSucess(data))
+	}).catch(error => {
+		dispatch(getMoviesFailure(error))
+	}));
 }
 
-const filterMovies = (e) => {
+const getMoviesStarted = () => ({
+	type: Types.GET_MOVIES_IS_LOADING
+})
 
-	let value = getMovies();
-	console.log(value);
-		
-	return (dispatch, getState)=> {
+const getMoviesSucess = (movies) => ({
+	type: Types.GET_MOVIES_SUCESS,
+	payload: movies
+})
+const getMoviesFailure = (error) => ({
+	type: Types.GET_MOVIES_FAILURE,
+	payload: error
+})
 
-			let filtedByName = "";
-			if(e !== ""){
+const handleSearchMovies = (e) => dispatch => {
 
-		 		filtedByName = getState().moviesReducer.movies.filter( el => { 
-					return el.title.indexOf(e) !== -1;
-				});
-			}else { 
-				filtedByName = getState().moviesReducer.movies
-			} 		
-
-		
-	}
+	return dispatch([{
+		type: Types.HANDLE_SEARCH_MOVIES,
+		payload: {
+			searchValue: e.target.value,
+		}
+	},
+	filterMovies()
+	])
 }
 
-export default getMovies;
+const filterMovies = () => {
+	return ({
+		type: Types.FILTER_BY_NAME
+	})
+
+}
+
+export { getMovies, filterMovies, handleSearchMovies };

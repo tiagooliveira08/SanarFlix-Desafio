@@ -1,14 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { moviesReducer, searchReducer } from "./../reducers";
+import { moviesReducer } from "./../reducers";
 
 import thunk from "redux-thunk";
-import ReduxPromise from "redux-promise";
+import reduxPromise from "redux-promise";
 import reduxMulti from "redux-multi";
 
 const reducersCombined = combineReducers({
-	moviesReducer,
-	searchReducer
+	moviesReducer
 })
 
-const store = createStore(reducersCombined, applyMiddleware(thunk, ReduxPromise, reduxMulti));
+const store = createStore(reducersCombined, applyMiddleware(reduxPromise, thunk, reduxMulti));
 export default store;

@@ -1,21 +1,23 @@
 import React, { Component } from "react";
-import {  Button,  Search } from "./../../components";
+import { Button, Search } from "./../../components";
 import "./style.scss";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { filterMovies } from "./../../redux/actions/";
+import { filterMovies, handleSearchMovies } from "./../../redux/actions/";
+
 
 
 class Header extends Component {
 
-	constructor(){
+	constructor() {
 		super();
 		this.searchInput = React.createRef();
 	}
-	render(){
+	render() {
 		const { searchValue } = this.props.state;
+		const { filterMovies, handleSearchMovies } = this.props;
 		return (
 			<div className="header">
 				<div className="container">
@@ -23,10 +25,11 @@ class Header extends Component {
 						Sanar <span>Flix</span>
 					</h1>
 					<div className="header__container">
-						<Search placeholder="Buscar por Nome" searchRef={ el => this.searchInput = el} />
+						<input type="search" className="search-input" placeholder="Buscar por Nome" onChange={(e) => handleSearchMovies(e)} value={searchValue} />
+
 						<div className="header__content__box">
-							<Button onClick={() => this.props.filterMovies(this.searchInput.value)} text="Buscar" width="280px"/>
-							<Button text="Adicionar novo video" width="180px"/>
+							<input type="button" className="button" value="Adicionar novo Video" />
+							<input type="button" className="button" value="Limpar" />
 						</div>
 					</div>
 				</div>
@@ -36,9 +39,9 @@ class Header extends Component {
 };
 
 const mapstateToProps = (state) => ({
-	state : state.searchReducer
+	state: state.moviesReducer
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({filterMovies}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ filterMovies, handleSearchMovies }, dispatch);
 
 export default connect(mapstateToProps, mapDispatchToProps)(Header);
