@@ -1,10 +1,10 @@
 import Button from "./Button";
-import Search from "./Search";
 import Title from "./Title";
-import Modal from "./Modal";
+import ModalViewMovie from "./ModalViewMovie";
+import ModalAddMovie from "./ModalAddMovie";
 export {
 	Button,
-	Search,
 	Title,
-	Modal
+	ModalViewMovie,
+	ModalAddMovie
 };

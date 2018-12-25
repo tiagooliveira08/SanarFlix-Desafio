@@ -4,7 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import "./style.scss";
 
 
-class Modal extends Component {
+class ModalViewMovie extends Component {
     constructor(props) {
         super(props);
 
@@ -47,4 +47,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal;
+export default ModalViewMovie;

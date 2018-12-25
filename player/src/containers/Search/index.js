@@ -1,16 +1,16 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import "./style.scss";
-import { connect } from "react-redux"; 
 
-const Search = ({value, placeholder, state, searchRef}) => (
+const Search = ({ placeholder, searchRef }) => (
 	<Fragment>
 		<input ref={searchRef} className="search-input" type="text" placeholder={placeholder} />
-	}
+		}
 	</Fragment>
 )
 
 const mapStateToProps = state => ({
-	state : state.searchReducer
+	state: state.searchReducer
 });
 
 export default connect(mapStateToProps, null)(Search);

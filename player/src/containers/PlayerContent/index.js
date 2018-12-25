@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { Title, Modal } from "./../../components";
+import { Title, ModalViewMovie, ModalAddMovie } from "./../../components";
 import { Filters, PlayerBox } from "./../";
 import "./style.scss";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getMovies, likeMovie } from "./../../redux/actions/";
+import { getMovies, likeMovie, orderMovies } from "./../../redux/actions/";
 
 class PlayerContent extends Component {
 
@@ -14,6 +14,7 @@ class PlayerContent extends Component {
 		super(props);
 		this.state = {
 			isModalOpened: false,
+			isModalAddVideo: false
 		}
 
 	}
@@ -48,12 +49,12 @@ class PlayerContent extends Component {
 	}
 
 	render() {
-		const { movies, filtedMovies, searchValue } = this.props.moviesReducer;
-		const { likeMovie } = this.props;
+		const { movies, filtedMovies } = this.props.moviesReducer;
+		const { likeMovie, orderMovies } = this.props;
 		return (
 			<Fragment>
 				{this.state.isModalOpened ?
-					<Modal {...this.state.modal}
+					<ModalViewMovie {...this.state.modal}
 						like={() => likeMovie(this.state.modal.id)}
 						onClick={() => this.setState({ ...this.state, isModalOpened: false })} />
 
@@ -62,7 +63,7 @@ class PlayerContent extends Component {
 					<div className="container">
 						<div className="player-content__header">
 							<Title text="Últimos Vídeos" margin="20px 0" />
-							<Filters />
+							<Filters sortViews={() => orderMovies("views")} sortLikes={() => orderMovies("likes")} />
 						</div>
 						<div className="player-content__content">
 							{this.renderPlayer(filtedMovies.length > 0 ? filtedMovies : movies)}
@@ -78,6 +79,6 @@ const mapStateToProps = (state) => ({
 	moviesReducer: state.moviesReducer
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getMovies, likeMovie }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ getMovies, likeMovie, orderMovies }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContent);

@@ -44,6 +44,12 @@ const moviesReducer = (state = initialState, action) => {
 		case Types.LIKE_MOVIE: {
 			return { ...state, ...action.payload }
 		}
+		case Types.ORDER_MOVIES: {
+			return { ...state, ...action.payload }
+		}
+		case Types.ADD_MOVIE: {
+			return { ...state, ...action.payload }
+		}
 		default: return { ...state }
 	}
 };
