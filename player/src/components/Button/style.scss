@@ -4,10 +4,16 @@
 	border: 1px solid #ccc;
 	color : #47525E;
 	cursor : pointer;
-	border-radius:  8px;
 	font-weight: 600;
+	border-radius : 2px;
 	width: 20%;
 	font-family: 'Open Sans', sans-serif;
 	font-size : 18px;
 	box-sizing: content-box;
+	background-color: #fff;
+
+	&:nth-child(2) {
+		background-color: unset;
+		color: #fff;
+	}
 }

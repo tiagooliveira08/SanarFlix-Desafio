@@ -5,7 +5,7 @@ import { Title } from "./../../components/";
 
 import { FaHeart, FaEye, FaPlayCircle } from "react-icons/fa";
 
-const PlayerBox = ({ id, title, views, likes, onClick }) => (
+const PlayerBox = ({ id, title, views, likes, licked, onClick }) => (
 	<div className="PlayerBox" onClick={() => onClick()} >
 		<div className="PlayerBox__image">
 			<img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
@@ -20,7 +20,7 @@ const PlayerBox = ({ id, title, views, likes, onClick }) => (
 				<span>{views}</span>
 			</div>
 			<div className="PlayerBox__container__likes">
-				<FaHeart />
+				<span><FaHeart className={licked ? "licked" : null} /></span>
 				<span>{likes}</span>
 			</div>
 		</div>

@@ -1,7 +1,8 @@
-import { getMovies, filterMovies, handleSearchMovies } from "./getMovies";
+import { getMovies, filterMovies, handleSearchMovies, likeMovie } from "./getMovies";
 
 export {
 	getMovies,
 	filterMovies,
-	handleSearchMovies
+	handleSearchMovies,
+	likeMovie
 }

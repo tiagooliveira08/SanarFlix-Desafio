@@ -6,7 +6,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getMovies } from "./../../redux/actions/";
+import { getMovies, likeMovie } from "./../../redux/actions/";
 
 class PlayerContent extends Component {
 
@@ -22,10 +22,19 @@ class PlayerContent extends Component {
 		this.props.getMovies();
 	}
 
+
 	renderPlayer(itens) {
 		if (itens && this.props.moviesReducer.filtedMovies.length !== 0) {
 			return itens.map((item, index) => {
-				return <PlayerBox {...item} key={index} onClick={() => this.setState({ ...this.state, isModalOpened: true, modal: { ...item } }, () => console.log(this.state))} />
+				return <PlayerBox
+					{...item}
+					key={index}
+					onClick={() => this.setState(
+						{
+							...this.state,
+							isModalOpened: true,
+							modal: { ...item }
+						})} />
 			})
 
 		}
@@ -40,9 +49,15 @@ class PlayerContent extends Component {
 
 	render() {
 		const { movies, filtedMovies, searchValue } = this.props.moviesReducer;
+		const { likeMovie } = this.props;
 		return (
 			<Fragment>
-				{this.state.isModalOpened ? <Modal {...this.state.modal} onClick={() => this.setState({ ...this.state, isModalOpened: false })} /> : null}
+				{this.state.isModalOpened ?
+					<Modal {...this.state.modal}
+						like={() => likeMovie(this.state.modal.id)}
+						onClick={() => this.setState({ ...this.state, isModalOpened: false })} />
+
+					: null}
 				< div className="player-content">
 					<div className="container">
 						<div className="player-content__header">
@@ -63,6 +78,6 @@ const mapStateToProps = (state) => ({
 	moviesReducer: state.moviesReducer
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getMovies }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ getMovies, likeMovie }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContent);

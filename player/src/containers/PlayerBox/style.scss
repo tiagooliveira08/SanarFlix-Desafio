@@ -28,7 +28,7 @@
 	    left: calc(50% - 50px);
 	    width: 100px;
 	    height: 100px;
-	    fill: rgba(150, 159, 170, .8);
+	    fill: rgba(0, 0, 0, 0.8);
 
 	}
 }
@@ -53,4 +53,8 @@
 	svg { 
 		margin-right: 10px; 
 	}
+}
+
+.licked {
+	 fill: #cc1111 !important;
 }

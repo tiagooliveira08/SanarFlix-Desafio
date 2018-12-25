@@ -40,6 +40,10 @@ const moviesReducer = (state = initialState, action) => {
 		case Types.HANDLE_SEARCH_MOVIES: {
 			return { ...state, ...action.payload }
 		}
+
+		case Types.LIKE_MOVIE: {
+			return { ...state, ...action.payload }
+		}
 		default: return { ...state }
 	}
 };

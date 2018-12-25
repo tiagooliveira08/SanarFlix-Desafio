@@ -42,7 +42,19 @@ const filterMovies = () => {
 	return ({
 		type: Types.FILTER_BY_NAME
 	})
-
 }
 
-export { getMovies, filterMovies, handleSearchMovies };
+const likeMovie = (id) => {
+	return (dispatch, getState) => {
+		const movies = getState().moviesReducer.movies.map(el => {
+			if (el.id === id && !el.licked) {
+				return { ...el, likes: el.likes + 1, licked: true }
+			}
+			return el
+		})
+		dispatch({ type: Types.LIKE_MOVIE, payload: { movies, filtedMovies: movies } })
+		console.log(movies);
+	}
+}
+
+export { getMovies, filterMovies, handleSearchMovies, likeMovie };
