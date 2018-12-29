@@ -41,8 +41,12 @@ export const handleSearchMovies = e => dispatch => {
 export const likeMovie = id => {
   return (dispatch, getState) => {
     const movies = getState().moviesReducer.movies.map(el => {
-      if (el.id === id && !el.licked) {
-        return { ...el, likes: el.likes + 1, licked: true };
+      if (el.id === id) {
+        return {
+          ...el,
+          licked: el.licked === undefined || false ? true : !el.licked,
+          likes: el.licked ? --el.likes : ++el.likes
+        };
       }
       return el;
     });
@@ -96,3 +100,9 @@ export const addMovie = movie => dispatch => [
   }),
   dispatch(orderByViews())
 ];
+
+export const clearSearch = () => dispatch => {
+  dispatch({
+    type: Types.CLEAR_SEARCH
+  });
+};

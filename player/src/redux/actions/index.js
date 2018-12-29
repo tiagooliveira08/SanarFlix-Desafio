@@ -5,7 +5,8 @@ import {
   orderMovies,
   addMovie,
   orderByViews,
-  orderByLikes
+  orderByLikes,
+  clearSearch
 } from "./moviesActions.js";
 
 export {
@@ -15,5 +16,6 @@ export {
   orderMovies,
   addMovie,
   orderByViews,
-  orderByLikes
+  orderByLikes,
+  clearSearch
 };
