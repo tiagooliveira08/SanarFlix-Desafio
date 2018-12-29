@@ -3,7 +3,6 @@ import Types from "./../../types";
 const initialState = {
 	searchValue: "",
 	movies: null,
-	filtedMovies: [],
 	isLoading: false,
 	isErrorLoading: false
 }
@@ -27,12 +26,6 @@ const moviesReducer = (state = initialState, action) => {
 			return { ...state, isErrorLoading: true }
 		}
 
-		case Types.FILTER_BY_NAME: {
-			return {
-				...state, filtedMovies:
-					state.movies.filter(el => el.title.toLowerCase().indexOf(state.searchValue.toLowerCase()) !== -1)
-			}
-		}
 		case Types.IS_LOANDING_MOVIES: {
 			return { ...state, ...action.payload }
 		}
@@ -48,7 +41,8 @@ const moviesReducer = (state = initialState, action) => {
 			return { ...state, ...action.payload }
 		}
 		case Types.ADD_MOVIE: {
-			return { ...state, ...action.payload }
+			state.movies.push(action.payload.movie);
+			return { ...state }
 		}
 		default: return { ...state }
 	}

@@ -8,7 +8,8 @@ class ModalAddMovie extends Component {
         super(props);
         this.state = {
             handleMovieName: "",
-            handleMovieLink: ""
+            handleMovieLink: "",
+            messageStatus: ""
         }
     }
 
@@ -24,6 +25,24 @@ class ModalAddMovie extends Component {
     }
     handleMovieLink = (e) => {
         this.setState({ ...this.state, handleMovieLink: e.target.value })
+    }
+
+    sendMovie = ({ name, link }) => {
+        var match = link.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i);
+        if (match) {
+
+            var newMovie = {
+                id: match ? match[1] : null,
+                title: name || "Nome não Setado",
+                views: Math.floor(Math.random() * 1000),
+                likes: Math.floor(Math.random() * 100)
+            }
+            this.props.addMovie(newMovie);
+            this.setState({ ...this.state, messageStatus: "Movie adicionada com sucesso!" });
+        } else {
+            this.setState({ ...this.state, messageStatus: "Error ao adicionar Movie!" });
+        }
+
     }
 
     render() {
@@ -45,8 +64,15 @@ class ModalAddMovie extends Component {
                             onChange={(e) => this.handleMovieLink(e)}
                             value={this.state.handleMovieLink} />
 
-
-                        <input type="button" className="button-add-movie" value="Cadastrar" onClick={() => addMovie({ name: this.state.handleMovieName, link: this.state.handleMovieLink })} />
+                        <p>{this.state.messageStatus}</p>
+                        <input type="button" className="button-add-movie"
+                            value="Cadastrar"
+                            onClick={() =>
+                                this.sendMovie(
+                                    {
+                                        name: this.state.handleMovieName,
+                                        link: this.state.handleMovieLink
+                                    })} />
                         <div className="modal-footer">
                         </div>
                     </div >

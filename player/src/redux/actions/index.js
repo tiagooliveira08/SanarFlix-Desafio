@@ -1,10 +1,19 @@
-import { getMovies, filterMovies, handleSearchMovies, likeMovie, orderMovies, addMovie } from "./moviesActions.js";
+import {
+  getMovies,
+  handleSearchMovies,
+  likeMovie,
+  orderMovies,
+  addMovie,
+  orderByViews,
+  orderByLikes
+} from "./moviesActions.js";
 
 export {
-	getMovies,
-	filterMovies,
-	handleSearchMovies,
-	likeMovie,
-	orderMovies,
-	addMovie
-}
+  getMovies,
+  handleSearchMovies,
+  likeMovie,
+  orderMovies,
+  addMovie,
+  orderByViews,
+  orderByLikes
+};

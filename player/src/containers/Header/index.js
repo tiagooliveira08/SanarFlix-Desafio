@@ -5,7 +5,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { filterMovies, handleSearchMovies, addMovie } from "./../../redux/actions/";
+import { handleSearchMovies, addMovie } from "./../../redux/actions/";
 
 
 
@@ -18,17 +18,22 @@ class Header extends Component {
 			isOpenedAddModal: false
 		}
 	}
+
+	closeModal = () => {
+		this.setState({
+			...this.state,
+			isOpenedAddModal: false
+		})
+	}
+
 	render() {
 		const { searchValue } = this.props.state;
-		const { filterMovies, handleSearchMovies, addMovie } = this.props;
+		const { handleSearchMovies, addMovie } = this.props;
 		return (
 			<Fragment>
 				{this.state.isOpenedAddModal ? <ModalAddMovie
 					addMovie={(movie) => addMovie(movie)}
-					onClose={() => this.setState({
-						...this.state,
-						isOpenedAddModal: false
-					})} /> : null}
+					onClose={() => this.closeModal()} /> : null}
 				<div className="header">
 					<div className="container">
 						<h1 className="header__hat">
@@ -53,6 +58,6 @@ const mapstateToProps = (state) => ({
 	state: state.moviesReducer
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ filterMovies, handleSearchMovies, addMovie }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ handleSearchMovies, addMovie }, dispatch);
 
 export default connect(mapstateToProps, mapDispatchToProps)(Header);

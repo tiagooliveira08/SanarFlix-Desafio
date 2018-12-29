@@ -1,110 +1,98 @@
 import axios from "axios";
 import Types from "./../types";
 
-
 export const getMovies = () => dispatch => {
+  dispatch(getMoviesStarted());
 
-	dispatch(getMoviesStarted());
-
-	setTimeout(axios.get("http://demo6669321.mockable.io/videos").then(data => {
-		dispatch(getMoviesSucess(data))
-	}).catch(error => {
-		dispatch(getMoviesFailure(error))
-	}));
-}
+  setTimeout(
+    axios
+      .get("http://demo6669321.mockable.io/videos")
+      .then(data => {
+        dispatch(getMoviesSucess(data));
+      })
+      .catch(error => {
+        dispatch(getMoviesFailure(error));
+      })
+  );
+};
 
 export const getMoviesStarted = () => ({
-	type: Types.GET_MOVIES_IS_LOADING
-})
+  type: Types.GET_MOVIES_IS_LOADING
+});
 
-export const getMoviesSucess = (movies) => ({
-	type: Types.GET_MOVIES_SUCESS,
-	payload: movies
-})
-const getMoviesFailure = (error) => ({
-	type: Types.GET_MOVIES_FAILURE,
-	payload: error
-})
+export const getMoviesSucess = movies => ({
+  type: Types.GET_MOVIES_SUCESS,
+  payload: movies
+});
+const getMoviesFailure = error => ({
+  type: Types.GET_MOVIES_FAILURE,
+  payload: error
+});
 
-export const handleSearchMovies = (e) => dispatch => {
+export const handleSearchMovies = e => dispatch => {
+  return dispatch({
+    type: Types.HANDLE_SEARCH_MOVIES,
+    payload: {
+      searchValue: e.target.value
+    }
+  });
+};
 
-	return dispatch([{
-		type: Types.HANDLE_SEARCH_MOVIES,
-		payload: {
-			searchValue: e.target.value,
-		}
-	},
-	filterMovies()
-	])
-}
+export const likeMovie = id => {
+  return (dispatch, getState) => {
+    const movies = getState().moviesReducer.movies.map(el => {
+      if (el.id === id && !el.licked) {
+        return { ...el, likes: el.likes + 1, licked: true };
+      }
+      return el;
+    });
+    dispatch({
+      type: Types.LIKE_MOVIE,
+      payload: { movies, filtedMovies: movies }
+    });
+    console.log(movies);
+  };
+};
 
-export const filterMovies = () => {
-	return ({
-		type: Types.FILTER_BY_NAME
-	})
-}
+export const orderByViews = isAsc => {
+  return dispatch => {
+    dispatch(orderMovies("views", isAsc));
+  };
+};
 
-export const likeMovie = (id) => {
-	return (dispatch, getState) => {
-		const movies = getState().moviesReducer.movies.map(el => {
-			if (el.id === id && !el.licked) {
-				return { ...el, likes: el.likes + 1, licked: true }
-			}
-			return el
-		})
-		dispatch({ type: Types.LIKE_MOVIE, payload: { movies, filtedMovies: movies } })
-		console.log(movies);
-	}
-}
+export const orderByLikes = isAsc => {
+  return dispatch => {
+    dispatch(orderMovies("likes", isAsc));
+  };
+};
 
-export const orderMovies = (type) => {
-	return (dispatch, getState) => {
-		const { movies, filtedMovies } = getState().moviesReducer;
-		var sorted;
-		switch (type) {
-			case "views": {
-				sorted = movies.sort((a, b) => {
-					return b.views - a.views
-				})
-				console.log(sorted);
-			}
-			case "likes": {
-				sorted = movies.sort((a, b) => {
-					return b.likes - a.likes
-				})
-			}
+export const orderMovies = (type = "views", isAsc = true) => {
+  return (dispatch, getState) => {
+    console.log("enter order");
+    const { movies } = getState().moviesReducer;
 
-		}
-		dispatch({
-			type: Types.ORDER_MOVIES,
-			payload: {
-				movies: sorted,
-				filtedMovies: sorted
-			}
-		})
+    var sorted = movies.sort((a, b) => {
+      if (isAsc) {
+        return b[type] - a[type];
+      }
+      return a[type] - b[type];
+    });
 
-	}
-}
+    dispatch({
+      type: Types.ORDER_MOVIES,
+      payload: {
+        movies: sorted
+      }
+    });
+  };
+};
 
-export const addMovie = ({ name, link }) => (dispatch, getState) => {
-
-	const { movies, filtedMovies } = getState().moviesReducer;
-	console.log(movies);
-	var match = link.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i);
-
-	var newMovie = {
-		id: match[1],
-		title: name || "Nome não Setado",
-		views: 999,
-		likes: 99
-
-	}
-	dispatch({
-		type: Types.ADD_MOVIE,
-		payload: {
-			movies: movies.push(newMovie)
-		}
-	})
-
-}
-
+export const addMovie = movie => dispatch => [
+  dispatch({
+    type: Types.ADD_MOVIE,
+    payload: {
+      movie
+    }
+  }),
+  dispatch(orderByViews())
+];
