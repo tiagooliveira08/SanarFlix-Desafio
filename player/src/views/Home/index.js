@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Header, PlayerContent } from "./../../containers";
-import "./../../config/reset/style.scss";
-import "./../../config/grid/style.scss";
-
+import { Container } from "./../../theme/Grid.js";
 const Home = () => (
-	
-	<div>
-			<Header />
-			<PlayerContent />
-	</div> 
-)
+  <div>
+    <Header />
+    <Container>
+      <PlayerContent />
+    </Container>
+  </div>
+);
 
 export default Home;

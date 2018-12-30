@@ -17,7 +17,6 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: action.payload.data.videos,
-        filtedMovies: action.payload.data.videos,
         isLoading: false
       };
     }

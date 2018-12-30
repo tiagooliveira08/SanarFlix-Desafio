@@ -54,7 +54,6 @@ export const likeMovie = id => {
       type: Types.LIKE_MOVIE,
       payload: { movies, filtedMovies: movies }
     });
-    console.log(movies);
   };
 };
 
