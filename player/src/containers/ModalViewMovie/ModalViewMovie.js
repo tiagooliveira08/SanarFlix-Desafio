@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Title } from "./../index";
+import { Title } from "./../../components";
 import { FaHeart } from "react-icons/fa";
-import "./style.scss";
+import {
+  Modal,
+  ModalContent,
+  ModalClose,
+  ModalBody,
+  ModalFooter,
+  ModalFooterContent
+} from "./../../theme/Modal";
 
 class ModalViewMovie extends Component {
   constructor(props) {
@@ -24,7 +31,6 @@ class ModalViewMovie extends Component {
   }
 
   hasLicked = () => {
-    console.log("enter");
     if (this.props.licked) {
       return "licked";
     }
@@ -32,12 +38,10 @@ class ModalViewMovie extends Component {
   render() {
     const { onClick, title, id, like } = this.props;
     return (
-      <div className="modal">
-        <div className="modal-content">
-          <div className="moda-close" onClick={() => onClick(id)}>
-            x
-          </div>
-          <div className="modal-body">
+      <Modal>
+        <ModalContent height={"600px"}>
+          <ModalClose onClick={() => onClick(id)}>x</ModalClose>
+          <ModalBody backgroundColor="#e0e6ed">
             <iframe
               width="100%"
               height="100%"
@@ -50,11 +54,10 @@ class ModalViewMovie extends Component {
               allow="encrypted-media"
               allowFullScreen
             />
-          </div>
-          <div className="modal-footer">
+          </ModalBody>
+          <ModalFooter>
             <Title text={title} font="21px" fontWeight={600} />
-            <div
-              className="modal-footer__content"
+            <ModalFooterContent
               onClick={() =>
                 this.setState({ isLicked: !this.state.isLicked }, () => like())
               }
@@ -63,10 +66,10 @@ class ModalViewMovie extends Component {
                 <FaHeart className={this.state.isLicked ? "licked" : false} />
               </span>
               <span>Gostei</span>
-            </div>
-          </div>
-        </div>
-      </div>
+            </ModalFooterContent>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { ModalAddMovie } from "./../../components";
+import { ModalAddMovie } from "./../index.js";
 import {
   HeaderStyled,
   Flex,
@@ -20,9 +20,8 @@ import {
 } from "./../../redux/actions/";
 
 class Header extends Component {
-  constructor() {
-    super();
-    this.searchInput = React.createRef();
+  constructor(props) {
+    super(props);
     this.state = {
       isOpenedAddModal: false
     };
@@ -40,12 +39,12 @@ class Header extends Component {
     const { handleSearchMovies, addMovie, clearSearch } = this.props;
     return (
       <Fragment>
-        {this.state.isOpenedAddModal ? (
+        {this.state.isOpenedAddModal && (
           <ModalAddMovie
             addMovie={movie => addMovie(movie)}
             onClose={() => this.closeModal()}
           />
-        ) : null}
+        )}
         <HeaderStyled>
           <Container>
             <HeaderLogo>

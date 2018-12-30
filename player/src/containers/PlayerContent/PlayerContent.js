@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from "react";
-import { Title, ModalViewMovie } from "../../components";
+import { Title } from "../../components";
+import { ModalViewMovie } from "./../";
 import { Filters, PlayerBox } from "..";
-import "./style.scss";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {
+  PlayerContentStyled,
+  PlayerContentHeader
+} from "./PlayerContent.style";
 
 import {
   getMovies,
@@ -26,7 +29,7 @@ class PlayerContent extends Component {
     this.props.getMovies();
   }
 
-  renderPlayer(itens) {
+  renderPlayer(itens = []) {
     if (itens) {
       return itens
         .filter(
@@ -64,7 +67,7 @@ class PlayerContent extends Component {
     const { likeMovie, orderByViews, orderByLikes } = this.props;
     return (
       <Fragment>
-        {this.state.isModalOpened ? (
+        {this.state.isModalOpened && (
           <ModalViewMovie
             {...this.state.modal}
             like={() => likeMovie(this.state.modal.id)}
@@ -75,21 +78,17 @@ class PlayerContent extends Component {
               })
             }
           />
-        ) : null}
-        <div className="player-content">
-          <div className="container">
-            <div className="player-content__header">
-              <Title text="Últimos Vídeos" margin="20px 0" />
-              <Filters
-                sortViews={isOrder => orderByViews(isOrder)}
-                sortLikes={isOrder => orderByLikes(isOrder)}
-              />
-            </div>
-            <div className="player-content__content">
-              {this.renderPlayer(movies)}
-            </div>
-          </div>
-        </div>
+        )}
+        <PlayerContentStyled>
+          <PlayerContentHeader>
+            <Title text="Últimos Vídeos" />
+            <Filters
+              sortViews={isOrder => orderByViews(isOrder)}
+              sortLikes={isOrder => orderByLikes(isOrder)}
+            />
+          </PlayerContentHeader>
+          {this.renderPlayer(movies)}
+        </PlayerContentStyled>
       </Fragment>
     );
   }

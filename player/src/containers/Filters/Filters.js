@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import "./style.scss";
 import { FaHeart, FaEye } from "react-icons/fa";
-
+import {
+  FiltersStyled,
+  FiltersContainer,
+  FiltersItem,
+  Text
+} from "./Filters.style";
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -13,11 +17,10 @@ class Filters extends Component {
   render() {
     const { sortLikes, sortViews } = this.props;
     return (
-      <div className="filters">
-        <span>Ordernar por:</span>
-        <div className="filters__container">
-          <div
-            className="filters__container__item"
+      <FiltersStyled>
+        <Text>Ordernar por:</Text>
+        <FiltersContainer>
+          <FiltersItem
             onClick={() =>
               this.setState(
                 {
@@ -29,10 +32,9 @@ class Filters extends Component {
             }
           >
             <FaHeart className="filters__container__item__icon" />
-            Likes
-          </div>
-          <div
-            className="filters__container__item"
+            <span>Likes</span>
+          </FiltersItem>
+          <FiltersItem
             onClick={() =>
               this.setState(
                 {
@@ -44,10 +46,10 @@ class Filters extends Component {
             }
           >
             <FaEye className="filters__container__item__icon" />
-            Visualizações
-          </div>
-        </div>
-      </div>
+            <span>Visualizações</span>
+          </FiltersItem>
+        </FiltersContainer>
+      </FiltersStyled>
     );
   }
 }
