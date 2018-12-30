@@ -7,7 +7,7 @@ import {
   Search,
   ButtonContainer,
   Button
-} from "./index.js";
+} from "./Header.style";
 import { Container } from "./../../theme/Grid";
 
 import { connect } from "react-redux";

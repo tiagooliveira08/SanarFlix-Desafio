@@ -1,13 +1,7 @@
-import Header from "./Header";
-import PlayerContent from "./PlayerContent";
-import Filters from "./Filters";
-import PlayerBox from "./PlayerBox";
-import Search from "./Search";
+import Header from "./Header/Header";
+import PlayerContent from "./PlayerContent/PlayerContent";
+import Filters from "./Filters/Filters";
+import PlayerBox from "./PlayerBox/PlayerBox";
+import Search from "./Search/Search";
 
-export {
-	Header,
-	PlayerContent,
-	Filters,
-	PlayerBox,
-	Search
-};
+export { Header, PlayerContent, Filters, PlayerBox, Search };

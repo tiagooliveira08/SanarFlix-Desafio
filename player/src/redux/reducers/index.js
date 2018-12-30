@@ -1,5 +1,3 @@
-import moviesReducer from "./moviesReducer";
+import moviesReducer from "./moviesReducer.js";
 
-export  {
-	moviesReducer,
-}
+export { moviesReducer };

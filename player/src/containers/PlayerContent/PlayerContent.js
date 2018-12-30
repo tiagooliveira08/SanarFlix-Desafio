@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { Title, ModalViewMovie, ModalAddMovie } from "./../../components";
-import { Filters, PlayerBox } from "./../";
+import { Title, ModalViewMovie } from "../../components";
+import { Filters, PlayerBox } from "..";
 import "./style.scss";
 
 import { connect } from "react-redux";
@@ -12,7 +12,7 @@ import {
   orderMovies,
   orderByViews,
   orderByLikes
-} from "./../../redux/actions/";
+} from "../../redux/actions";
 
 class PlayerContent extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class PlayerContent extends Component {
               .indexOf(this.props.moviesReducer.searchValue.toLowerCase()) !==
             -1
         )
-        .map((item, index, array) => {
+        .map((item, index) => {
           return (
             <PlayerBox
               {...item}
@@ -60,8 +60,8 @@ class PlayerContent extends Component {
   }
 
   render() {
-    const { movies, filtedMovies } = this.props.moviesReducer;
-    const { likeMovie, orderMovies, orderByViews, orderByLikes } = this.props;
+    const { movies } = this.props.moviesReducer;
+    const { likeMovie, orderByViews, orderByLikes } = this.props;
     return (
       <Fragment>
         {this.state.isModalOpened ? (

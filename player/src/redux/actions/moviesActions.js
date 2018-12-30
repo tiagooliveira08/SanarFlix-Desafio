@@ -1,19 +1,18 @@
 import axios from "axios";
 import Types from "./../types";
+import sanarFlix from "./../../config";
 
 export const getMovies = () => dispatch => {
   dispatch(getMoviesStarted());
 
-  setTimeout(
-    axios
-      .get("http://demo6669321.mockable.io/videos")
-      .then(data => {
-        dispatch(getMoviesSucess(data));
-      })
-      .catch(error => {
-        dispatch(getMoviesFailure(error));
-      })
-  );
+  sanarFlix
+    .get("/videos")
+    .then(data => {
+      dispatch(getMoviesSucess(data));
+    })
+    .catch(error => {
+      dispatch(getMoviesFailure(error));
+    });
 };
 
 export const getMoviesStarted = () => ({
