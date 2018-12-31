@@ -1,30 +1,40 @@
 import React from "react";
-import "./style.scss";
 
 import { Title } from "./../../components/";
+import {
+  PlayerBoxStyled,
+  PlayerBoxImage,
+  PlayerBoxTitle,
+  PlayerBoxItens,
+  LikeIcon
+} from "./PlayerBox.style";
+
+import { Flex } from "./../../theme/Grid";
 
 import { FaHeart, FaEye, FaPlayCircle } from "react-icons/fa";
 
 const PlayerBox = ({ id, title, views, likes, licked, onClick }) => (
-	<div className="PlayerBox" onClick={() => onClick()} >
-		<div className="PlayerBox__image">
-			<img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
-			<FaPlayCircle />
-		</div>
-		<div className="PlayerBox__title">
-			<Title text={title} font="20px" margin="10px 0" />
-		</div>
-		<div className="PlayerBox__container">
-			<div className="PlayerBox__container__views">
-				<FaEye />
-				<span>{views}</span>
-			</div>
-			<div className="PlayerBox__container__likes">
-				<span><FaHeart className={licked ? "licked" : null} /></span>
-				<span>{likes}</span>
-			</div>
-		</div>
-	</div >
-)
+  <PlayerBoxStyled onClick={() => onClick()}>
+    <PlayerBoxImage className="PlayerBox__image">
+      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
+      <FaPlayCircle />
+    </PlayerBoxImage>
+    <PlayerBoxTitle>
+      <Title text={title} font="20px" margin="10px 0" />
+    </PlayerBoxTitle>
+    <Flex>
+      <PlayerBoxItens>
+        <FaEye />
+        <span>{views}</span>
+      </PlayerBoxItens>
+      <PlayerBoxItens>
+        <LikeIcon isLiked={licked ? true : false}>
+          <FaHeart />
+        </LikeIcon>
+        <span>{likes}</span>
+      </PlayerBoxItens>
+    </Flex>
+  </PlayerBoxStyled>
+);
 
 export default PlayerBox;

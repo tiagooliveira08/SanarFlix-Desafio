@@ -53,25 +53,3 @@ export const ModalFooter = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-export const ModalFooterContent = styled.div`
-  background-color: #eeeeee;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-top: 5px;
-  span {
-    &:nth-child(1) {
-      margin-right: 15px;
-      display: inline-flex;
-      svg {
-        fill: #47525e;
-      }
-    }
-    &:nth-child(2) {
-      margin-right: 10px;
-    }
-  }
-`;

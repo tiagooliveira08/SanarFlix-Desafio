@@ -6,16 +6,16 @@ import {
   ModalContent,
   ModalClose,
   ModalBody,
-  ModalFooter,
-  ModalFooterContent
+  ModalFooter
 } from "./../../theme/Modal";
 
+import { ModalFooterItems, LikeIcon } from "./ModalViewMovie.style";
 class ModalViewMovie extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLicked: false
+      isLiked: false
     };
   }
 
@@ -23,7 +23,7 @@ class ModalViewMovie extends Component {
     document.body.style.overflow = "hidden";
 
     this.setState({
-      isLicked: this.props.licked ? true : false
+      isLiked: this.props.licked ? true : false
     });
   }
   componentWillUnmount() {
@@ -57,16 +57,16 @@ class ModalViewMovie extends Component {
           </ModalBody>
           <ModalFooter>
             <Title text={title} font="21px" fontWeight={600} />
-            <ModalFooterContent
+            <ModalFooterItems
               onClick={() =>
-                this.setState({ isLicked: !this.state.isLicked }, () => like())
+                this.setState({ isLiked: !this.state.isLiked }, () => like())
               }
             >
-              <span>
-                <FaHeart className={this.state.isLicked ? "licked" : false} />
-              </span>
+              <LikeIcon isLiked={this.state.isLiked ? true : false}>
+                <FaHeart />
+              </LikeIcon>
               <span>Gostei</span>
-            </ModalFooterContent>
+            </ModalFooterItems>
           </ModalFooter>
         </ModalContent>
       </Modal>

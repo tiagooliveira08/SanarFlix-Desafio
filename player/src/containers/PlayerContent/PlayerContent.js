@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Title } from "../../components";
+import { Title, PlayerBox } from "../../components/index.js";
 import { ModalViewMovie } from "./../";
-import { Filters, PlayerBox } from "..";
+import { Filters } from "../";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
