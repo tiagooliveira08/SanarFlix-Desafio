@@ -39,11 +39,12 @@ class ModalViewMovie extends Component {
     const { onClick, title, id, like } = this.props;
     return (
       <Modal>
-        <ModalContent height={"600px"}>
+        <ModalContent height={"450px"}>
           <ModalClose onClick={() => onClick(id)}>x</ModalClose>
           <ModalBody backgroundColor="#e0e6ed">
             <iframe
               width="100%"
+              title={"Modal"}
               height="100%"
               src={
                 "https://www.youtube.com/embed/" +

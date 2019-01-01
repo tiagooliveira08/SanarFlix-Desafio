@@ -9,7 +9,8 @@ export const Container = styled.div`
   `}
 
   ${media.desktop`
-    width: 1280px;
+    width: 100%;
+    max-width: 1280px;
   `}
 `;
 

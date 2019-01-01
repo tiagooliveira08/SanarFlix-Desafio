@@ -6,11 +6,11 @@ export const LikeIcon = styled.span`
 `;
 
 export const ModalFooterItems = styled.div`
-  background-color: #eeeeee;
   padding: 5px;
   display: flex;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
+  outline: none;
   span {
     &:nth-child(1) {
       margin-right: 15px;
@@ -27,6 +27,8 @@ export const ModalFooterItems = styled.div`
   ${media.desktop`
     align-items: center;
     justify-content: center;
+
+  background-color: #eeeeee;
     margin-top: 5px;
   `}
 `;

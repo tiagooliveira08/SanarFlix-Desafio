@@ -16,7 +16,7 @@ import { FaHeart, FaEye, FaPlayCircle } from "react-icons/fa";
 const PlayerBox = ({ id, title, views, likes, licked, onClick }) => (
   <PlayerBoxStyled onClick={() => onClick()}>
     <PlayerBoxImage className="PlayerBox__image">
-      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
+      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt={title} />
       <FaPlayCircle />
     </PlayerBoxImage>
     <PlayerBoxTitle>

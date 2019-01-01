@@ -20,12 +20,13 @@ export const ModalContent = styled.div`
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 3px;
-  height: ${({ height }) => (height ? "600px" : "auto")}
+  height: ${({ height }) => (height ? "450px" : "auto")};
   width: 90%;
   padding: 10px;
   ${media.desktop`
   padding: 40px;
-  height: ${({ height }) => (height ? height : "auto")}
+  height : 90vh;
+  max-height: 600px;
   `}
 `;
 
@@ -64,5 +65,6 @@ export const ModalFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  flex-direction: row;
   `}
 `;

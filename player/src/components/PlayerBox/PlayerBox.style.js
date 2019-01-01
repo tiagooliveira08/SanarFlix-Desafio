@@ -5,15 +5,24 @@ export const PlayerBoxStyled = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-right: 3%;
   border-radius: 10px;
   cursor: pointer;
   padding: 10px 0;
 
+  ${media.tablet`
+    width: 49%;
+    margin-right: 2%;
+    display: inline-flex;
+
+    &:nth-child(2n+3){
+      margin-right: 0;
+    }
+  `}
   ${media.desktop`
   margin-bottom: 40px;
   width: 30.3%;
   display: inline-flex;  
+  margin-right: 3% !important;
   `}
 `;
 
@@ -25,11 +34,27 @@ export const PlayerBoxImage = styled.div`
   position: relative;
   border-radius: 2px;
   position: relative;
+
   img {
     border-radius: 5px;
     width: 100%;
-    top: -32px;
+    top: -60px;
     position: relative;
+    ${media.tablet`
+      top: -34px;
+    `}
+    ${media.desktop`
+      top: -45px;
+    `}
+  }
+  svg {
+    width: 100px;
+    height: 100px;
+    fill: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 

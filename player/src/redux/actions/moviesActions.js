@@ -1,4 +1,3 @@
-import axios from "axios";
 import Types from "./../types";
 import sanarFlix from "./../../config";
 
