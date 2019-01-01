@@ -1,9 +1,15 @@
 import styled from "styled-components";
+import media from "./../../theme/Medias";
 
 export const HeaderStyled = styled.div`
   width: 100%;
-  padding: 60px 0;
   background-color: #29303b;
+  padding: 20px 0;
+
+  ${media.desktop`
+  padding: 60px 0;
+  
+  `}
 `;
 
 export const Flex = styled.div`
@@ -27,7 +33,7 @@ export const HeaderLogo = styled.h1`
 `;
 
 export const Search = styled.input`
-  width: 500px;
+  width: 100%;
   margin-right: 40px;
   border: none;
   height: 55px;
@@ -42,6 +48,10 @@ export const Search = styled.input`
     position: relative;
     top: 5%;
   }
+  ${media.desktop`
+    width: 500px;
+    
+    `}
 `;
 
 export const ButtonContainer = styled.div`
@@ -58,7 +68,7 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
   border-radius: 2px;
-  width: 20%;
+  width: 80%;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   box-sizing: content-box;
@@ -68,5 +78,10 @@ export const Button = styled.button`
     background-color: unset;
     color: #fff;
     margin-left: 20px;
+    width: 20%;
   }
+
+  ${media.desktop`
+    width: 20%;
+    `}
 `;

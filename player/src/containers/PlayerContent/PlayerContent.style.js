@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import media from "./../../theme/Medias";
 
 export const PlayerContentStyled = styled.div``;
 
 export const PlayerContentHeader = styled.div`
   position: relative;
-  margin: 20px 0;
+  margin-top: 20px;
   > h3 {
     margin: 0;
     display: inline-block;
@@ -12,6 +13,10 @@ export const PlayerContentHeader = styled.div`
   }
 
   > div {
+    margin-top: 10px;
+    ${media.desktop`
+    margin-top: 0px;
     float: right;
+    `}
   }
 `;

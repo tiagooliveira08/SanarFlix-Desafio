@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "./Medias.js";
 
 export const Modal = styled.div`
   width: 100%;
@@ -14,14 +15,18 @@ export const Modal = styled.div`
 export const ModalContent = styled.div`
   position: relative;
   top: 50%;
-  width: 80%;
   left: 50%;
   z-index: 999;
   transform: translate(-50%, -50%);
-  height: ${({ height }) => (height ? height : "auto")}
   background-color: #fff;
   border-radius: 3px;
+  height: ${({ height }) => (height ? "600px" : "auto")}
+  width: 90%;
+  padding: 10px;
+  ${media.desktop`
   padding: 40px;
+  height: ${({ height }) => (height ? height : "auto")}
+  `}
 `;
 
 export const ModalClose = styled.div`
@@ -41,15 +46,23 @@ export const ModalClose = styled.div`
 
 export const ModalBody = styled.div`
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(95% - 100px);
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? backgroundColor : "#fff"};
+
+  ${media.desktop`
+    height: calc(100% - 50px);
+    `}
 `;
 
 export const ModalFooter = styled.div`
   width: 100%;
-  height: 50px;
   display: flex;
+  height: 100px;
+  flex-direction: column;
+  ${media.desktop`
   justify-content: space-between;
   align-items: center;
+  height: 50px;
+  `}
 `;

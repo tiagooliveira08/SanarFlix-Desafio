@@ -1,13 +1,20 @@
 import styled from "styled-components";
+import media from "./../../theme/Medias";
 
 export const PlayerBoxStyled = styled.div`
-  width: 30.3%;
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   flex-direction: column;
   margin-right: 3%;
   border-radius: 10px;
-  margin-bottom: 40px;
   cursor: pointer;
+  padding: 10px 0;
+
+  ${media.desktop`
+  margin-bottom: 40px;
+  width: 30.3%;
+  display: inline-flex;  
+  `}
 `;
 
 export const PlayerBoxImage = styled.div`

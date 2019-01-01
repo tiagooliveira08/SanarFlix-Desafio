@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import media from "./../../theme/Medias";
 
 export const FiltersStyled = styled.div`
   display: inline-flex;
